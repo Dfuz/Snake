@@ -1,0 +1,11 @@
+#include "../include/Resources.h"
+
+1	ICON	"..\\resources\\cinder_app_icon.ico"
+
+IDR_WAVE1               WAVE                    "..\\resources\\DeadSound.wav"
+
+IDR_WAVE2               WAVE                    "..\\resources\\EatAppleSound.wav"
+
+IDR_WAVE3               WAVE                    "..\\resources\\MainTheme.wav"
+
+IDR_WAVE4               WAVE                    "..\\resources\\MovementSound.wav"
