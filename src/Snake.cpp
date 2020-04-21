@@ -1,6 +1,7 @@
 #include <cinder/app/AppBase.h>
 #include "Snake.hpp"
 #include "Resources.h"
+#include <Windows.h>
 
 /*-----------------------------------------------------------------------*/
 /*           I M P L E M E N T A T I O N   OF   M E T H O D S			 */

@@ -52,7 +52,7 @@ void SnakeApp::setup()
 		M *= 10;
 	}
 	scale = getWindowSize().x / N;
-	int x = N / 4, y = M / 5, count = 1; // значения для препятствия
+	int x = N / 4, y = M / 5, count = 1; // values for the wall
 	for (auto& now : square1)
 	{
 		now.setRGB(0.5, 0.5, 0.5);
@@ -69,7 +69,7 @@ void SnakeApp::setup()
 			now.sety(y);
 		}
 	}
-	x = N / 1.3, y = M / 3, count = 1; // значения для препятствия
+	x = N / 1.3, y = M / 3, count = 1; // values for the wall
 	for (auto& now : square2)
 	{
 		now.setRGB(0.5, 0.5, 0.5);
