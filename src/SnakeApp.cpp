@@ -108,7 +108,7 @@ void SnakeApp::setup()
 	BackGroundMusic = Voice::create(sound);
 	BackGroundMusic->setVolume(0.008f);
 #endif // WITH_ASSETS
-	text = params::InterfaceGl::create("Snake game v0.6", ivec2(0, 0));
+	text = params::InterfaceGl::create("Snake game v0.7", ivec2(0, 0));
 	updateinfo();
 	text->maximize();
 }
