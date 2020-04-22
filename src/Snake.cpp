@@ -81,7 +81,7 @@ Square::Square(float InitX, float InitY, float setRED, float setGREEN, float set
 
 Square::~Square()
 {
-} 
+}
 
 // set the scale
 void Square::setscale(int newScale)
@@ -138,7 +138,7 @@ Snake::Snake(float InitX, float InitY, float setRED, float setGREEN, float setBL
 	{
 		snakemas.push_back(buf);
 		buf.first = -300.f; // put it off the screen so that 
-							// the loss condition does not work
+		// the loss condition does not work
 	}
 	eye[0].setRGB(0.f, 0.f, 1.f);
 	eye[1].setRGB(0.f, 0.f, 1.f);

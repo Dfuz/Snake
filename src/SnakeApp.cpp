@@ -2,7 +2,9 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "Snake.hpp"
-#define SQUARE_SIZE 15
+//#include "Windows.h"
+//#include "cinder/app/Window.h"
+#define WALL_SIZE 15 
 
 class SnakeApp final : public App
 {
@@ -12,8 +14,8 @@ public:
 	bool music = false, start_game;
 	Apple apple;
 	Snake snake;
-	Square square1[SQUARE_SIZE]; // wall number 1
-	Square square2[SQUARE_SIZE]; // wall number 2
+	Square square1[WALL_SIZE]; // wall number 1
+	Square square2[WALL_SIZE]; // wall number 2
 	bool mIsPaused; // game pause
 	int level = 0; // level
 	int scale = 0; // cell side size
@@ -106,7 +108,7 @@ void SnakeApp::setup()
 	SnakeDie->setVolume(0.3f);
 	sound = load(app::loadResource(MAINTHEME_SOUND));
 	BackGroundMusic = Voice::create(sound);
-	BackGroundMusic->setVolume(0.008f);
+	BackGroundMusic->setVolume(0.006f);
 #endif // WITH_ASSETS
 	text = params::InterfaceGl::create("Snake game v0.7", ivec2(0, 0));
 	updateinfo();
@@ -156,8 +158,9 @@ void SnakeApp::keyDown(KeyEvent event)
 	case KeyEvent::KEY_f:
 		setFullScreen(!isFullScreen());
 		if (!isFullScreen())
-		{
+		{		
 			setWindowSize(1280, 720);
+			setWindowPos(getDisplay()->getWidth() / 2 - getWindowCenter().x, getDisplay()->getHeight() / 2 - getWindowCenter().y);
 		}
 		scale = getWindowSize().x / N;
 		apple.setscale(scale);
@@ -188,6 +191,12 @@ void SnakeApp::keyDown(KeyEvent event)
 			music = false;
 		}
 		break;
+	case KeyEvent::KEY_s:
+		if (BackGroundMusic->getVolume() == 0.f)
+		{
+			BackGroundMusic->setVolume(0.006f);
+		}
+		else BackGroundMusic->setVolume(0.f);
 	}
 }
 
@@ -275,10 +284,8 @@ auto SnakeApp::new_apple_coords(void) -> void
 		match = snake.bingo_with_head(x_apple, y_apple);
 		if (match == false)
 		{
-			for (auto i = 0; i < SQUARE_SIZE; i++)
+			for (auto i = 0; i < WALL_SIZE; i++)
 			{
-				console() << "x1: " << square1[i].getx() << " ; y1: " << square1[i].gety() << std::endl;
-				console() << "x2: " << square2[i].getx() << " ; y2: " << square2[i].gety() << std::endl;
 				if (x_apple == square1[i].getx() && y_apple == square1[i].gety())
 					match = true;				
 				if (x_apple == square2[i].getx() && y_apple == square2[i].gety())
@@ -300,6 +307,7 @@ void SnakeApp::updateinfo(void)
 	text->addText("Esc - Exit");
 	text->addText("Snake size is " + std::to_string(snake.getsize()));
 	text->addText("Total score is " + std::to_string(total_score));
+	text->addText("Music on/off - s");
 }
 
 CINDER_APP(SnakeApp, RendererGl, [&](App::Settings* settings)
